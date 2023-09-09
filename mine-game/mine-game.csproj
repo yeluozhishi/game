@@ -183,7 +183,6 @@
     <Compile Include="src\body\User.cs" />
     <Compile Include="src\common\ClientSettings.cs" />
     <Compile Include="src\common\ExampleHelper.cs" />
-    <Compile Include="src\common\ThreadPoolUtil.cs" />
     <Compile Include="src\connector\http\HttpHelper.cs" />
     <Compile Include="src\connector\socket\EchoClientHandler.cs" />
     <Compile Include="src\connector\socket\Program.cs" />
