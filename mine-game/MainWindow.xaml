@@ -10,9 +10,10 @@
 
         <Canvas Width="500px" Height="200px" >
 
-            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="212" Canvas.Top="148" Click="Button_Click"/>
+            <Button Content="login" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="185" Canvas.Top="148" Click="login"/>
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Canvas.Left="206" Canvas.Top="64"/>
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Canvas.Left="206" Canvas.Top="104"/>
+            <Button Content="register" Canvas.Left="250" Canvas.Top="148" Click="register"/>
 
         </Canvas>
 

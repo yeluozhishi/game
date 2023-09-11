@@ -179,15 +179,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="src\body\Gamer.cs" />
-    <Compile Include="src\body\User.cs" />
+    <Compile Include="src\entity\GameGatewayInfo.cs" />
+    <Compile Include="src\entity\Gamer.cs" />
+    <Compile Include="src\entity\dto\UserDto.cs" />
+    <Compile Include="src\entity\palyerbody\Base.cs" />
+    <Compile Include="src\entity\palyerbody\Player.cs" />
+    <Compile Include="src\entity\UserInfo.cs" />
     <Compile Include="src\common\ClientSettings.cs" />
     <Compile Include="src\common\ExampleHelper.cs" />
     <Compile Include="src\connector\http\HttpHelper.cs" />
     <Compile Include="src\connector\socket\EchoClientHandler.cs" />
     <Compile Include="src\connector\socket\Program.cs" />
+    <Compile Include="src\pages\PlayerPanel.xaml.cs">
+      <DependentUpon>PlayerPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\service\BaseServiceInterface.cs" />
     <Compile Include="src\service\LoginService.cs" />
+    <Compile Include="src\service\ServiceHelper.cs" />
     <Compile Include="src\utils\ReflectionUtil.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +209,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="src\pages\PlayerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -235,7 +247,6 @@
   <ItemGroup>
     <Folder Include="src\api\" />
     <Folder Include="src\assets\" />
-    <Folder Include="src\pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

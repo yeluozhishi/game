@@ -33,14 +33,5 @@ namespace mine_game.src.utils
             return instances;
         }
 
-        public static void run()
-        {
-            List<BaseServiceInterface> s = getInstance<BaseServiceInterface>();
-            s.ForEach(c =>
-            {
-                c.minePrint("1");
-            });
-
-        }
     }
 }
