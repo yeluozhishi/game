@@ -1,12 +1,15 @@
 ﻿using mine_game.src.body;
-using System;
+using mine_game.src.connector.socket;
+using mine_game.src.constant;
+using System.Diagnostics;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace mine_game.src.service
 {
     class LoginService : BaseServiceInterface
     {
-        public UserInfo userInfo { get; set; }
+        public static UserInfo userInfo { get; set; }
 
         public void register()
         {
@@ -14,8 +17,8 @@ namespace mine_game.src.service
             user.userName = "whk";
             user.pwd = "123";
             user.zone = 1;
-            var re = WebClientHelper.Post("http://127.0.0.1:5020/WEB-CENTER/user/register", JsonSerializer.Serialize(user));
-            Console.WriteLine(re);
+            var re = WebClientHelper.Post(ServiceConstant.WEB_CENTER + ServiceConstant.WEB_CENTER_USER_REGISTER, JsonSerializer.Serialize(user));
+            Debug.WriteLine(re);
             userInfo = JsonSerializer.Deserialize<UserInfo>(re);
         }
 
@@ -27,12 +30,11 @@ namespace mine_game.src.service
             user.pwd = "123";
             user.zone = 1;
             user.openId = "";
-            var re = WebClientHelper.Post("http://127.0.0.1:5020/WEB-CENTER/user/login", JsonSerializer.Serialize(user));
-            Console.WriteLine(re);
+            var re = WebClientHelper.Post(ServiceConstant.WEB_CENTER + ServiceConstant.WEB_CENTER_USER_LOGIN, JsonSerializer.Serialize(user));
+            Debug.WriteLine(re);
             userInfo = JsonSerializer.Deserialize<UserInfo>(re);
-            
+            Task.Run(() => NettyConnector.Run());
         }
 
-        
     }
 }

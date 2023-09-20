@@ -21,14 +21,14 @@ namespace mine_game.src.pages
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class PlayerPanel : Page
+    public sealed partial class BlankPage1 : Page
     {
-        public PlayerPanel()
+        public BlankPage1()
         {
             this.InitializeComponent();
         }
 
-        private void frontPage(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             Navigation.RootFrame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }

@@ -7,10 +7,8 @@ namespace mine_game.src.common
     {
         static ExampleHelper()
         {
-            Configuration = new ConfigurationBuilder()
-                .SetBasePath(ProcessDirectory)
-                .AddJsonFile("appsettings.json", false, true)
-                .Build();
+            var builder = new ConfigurationBuilder();
+            Configuration = builder.Build();
         }
 
         public static string ProcessDirectory

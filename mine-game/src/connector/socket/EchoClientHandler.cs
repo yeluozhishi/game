@@ -2,6 +2,7 @@
 using DotNetty.Transport.Channels;
 using mine_game.src.common;
 using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace mine_game.src.connector.socket
@@ -11,7 +12,7 @@ namespace mine_game.src.connector.socket
         readonly private IByteBuffer initialMessage;
         public EchoClientHandler()
         {
-            this.initialMessage = Unpooled.Buffer(ClientSettings.Size);
+            this.initialMessage = Unpooled.Buffer(256);
             byte[] messageBytes = Encoding.UTF8.GetBytes("Hello world");
             this.initialMessage.WriteBytes(messageBytes);
         }
@@ -23,7 +24,7 @@ namespace mine_game.src.connector.socket
             var byteBuffer = message as IByteBuffer;
             if (byteBuffer != null)
             {
-                Console.WriteLine("Received from server: " + byteBuffer.ToString(Encoding.UTF8));
+                Debug.WriteLine("Received from server: " + byteBuffer.ToString(Encoding.UTF8));
             }
             context.WriteAsync(message);
         }
@@ -32,7 +33,7 @@ namespace mine_game.src.connector.socket
 
         public override void ExceptionCaught(IChannelHandlerContext context, Exception exception)
         {
-            Console.WriteLine("Exception: " + exception);
+            Debug.WriteLine("Exception: " + exception);
             context.CloseAsync();
         }
     }

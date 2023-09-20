@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,9 @@ namespace mine_game.src.service
 
         private ServiceHelper()
         {
+            // 实例化类并加载
             var serviceList = ReflectionUtil.getInstance<BaseServiceInterface>();
             serviceList.ForEach(serviceInterface => serviceMap.Add(serviceInterface.GetType().Name, serviceInterface));
-            Console.WriteLine("w");
         }
 
         public T getInstance<T>(Type t) where T : BaseServiceInterface

@@ -3,14 +3,15 @@ using DotNetty.Handlers.Logging;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
-using mine_game.src.common;
+using mine_game.src.service;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace mine_game.src.connector.socket
 {
-    class Program
+    class NettyConnector
     {
         static async Task RunClientAsync()
         {
@@ -34,14 +35,12 @@ namespace mine_game.src.connector.socket
 
 
                     }));
-                IChannel clientChannel = await bootstrap.ConnectAsync(new IPEndPoint(ClientSettings.Host, ClientSettings.Port));
-                Console.ReadLine();
-
-                await clientChannel.CloseAsync();
+                IChannel clientChannel = await bootstrap.ConnectAsync(new IPEndPoint(LoginService.userInfo.gameGatewayInfo.Host(), LoginService.userInfo.gameGatewayInfo.port));
+                Debug.WriteLine("建立连接");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.WriteLine(ex.ToString());
             }
             finally
             {

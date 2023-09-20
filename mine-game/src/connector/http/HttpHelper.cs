@@ -1,5 +1,6 @@
 ﻿using log4net;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
@@ -50,7 +51,7 @@ public class HttpHelper
             if (ex.Response != null)
             {
                 HttpWebResponse response = (HttpWebResponse)ex.Response;
-                Console.WriteLine("Error code: {0}", response.StatusCode);
+                Debug.WriteLine("Error code: {0}", response.StatusCode);
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
@@ -151,11 +152,11 @@ public class HttpHelper
         myRequest.ContentType = "application/json";
 
         //将客户端IP加到头文件中
-        string sRealIp = GetHostAddress();
-        if (!string.IsNullOrEmpty(sRealIp))
-        {
-            myRequest.Headers.Add("ClientIp", sRealIp);
-        }
+        //string sRealIp = GetHostAddress();
+        //if (!string.IsNullOrEmpty(sRealIp))
+        //{
+        //    myRequest.Headers.Add("ClientIp", sRealIp);
+        //}
 
         using (Stream reqstream = myRequest.GetRequestStream())
         {
@@ -170,36 +171,6 @@ public class HttpHelper
     }
     #endregion
 
-
-    /// <summary>
-    /// 获取客户端IP地址（无视代理）
-    /// </summary>
-    /// <returns>若失败则返回回送地址</returns>
-    public static string GetHostAddress()
-    {
-        try
-        {
-            string userHostAddress = HttpContext.Current.Request.UserHostAddress;
-
-            if (string.IsNullOrEmpty(userHostAddress))
-            {
-                userHostAddress = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-            }
-
-            //最后判断获取是否成功，并检查IP地址的格式（检查其格式非常重要）
-            if (!string.IsNullOrEmpty(userHostAddress) && IsIP(userHostAddress))
-            {
-                return userHostAddress;
-            }
-            return "127.0.0.1";
-        }
-        catch
-        {
-            return "127.0.0.1";
-        }
-
-    }
-
     /// <summary>
     /// 检查IP地址格式
     /// </summary>
@@ -208,24 +179,6 @@ public class HttpHelper
     public static bool IsIP(string ip)
     {
         return System.Text.RegularExpressions.Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
-    }
-
-    public static long ConvertDataTimeLong(DateTime dt)
-    {
-        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-        TimeSpan toNow = dt.Subtract(dtStart);
-        long timeStamp = toNow.Ticks;
-        timeStamp = long.Parse(timeStamp.ToString().Substring(0, timeStamp.ToString().Length - 4));
-        return timeStamp;
-    }
-
-    public static DateTime ConvertLongDateTime(long d)
-    {
-        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-        long lTime = long.Parse(d + "0000");
-        TimeSpan toNow = new TimeSpan(lTime);
-        DateTime dtResult = dtStart.Add(toNow);
-        return dtResult;
     }
 
     private string ConvertToJsonString<T>(T model)
