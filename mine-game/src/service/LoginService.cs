@@ -20,6 +20,7 @@ namespace mine_game.src.service
             var re = WebClientHelper.Post(ServiceConstant.WEB_CENTER + ServiceConstant.WEB_CENTER_USER_REGISTER, JsonSerializer.Serialize(user));
             Debug.WriteLine(re);
             userInfo = JsonSerializer.Deserialize<UserInfo>(re);
+            Task.Run(() => NettyConnector.Run());
         }
 
 
@@ -36,5 +37,11 @@ namespace mine_game.src.service
             Task.Run(() => NettyConnector.Run());
         }
 
+
+        public void getPlayers()
+        {
+            var user = new UserDto();
+
+        }
     }
 }

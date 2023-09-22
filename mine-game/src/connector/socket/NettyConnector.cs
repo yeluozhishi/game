@@ -13,6 +13,8 @@ namespace mine_game.src.connector.socket
 {
     class NettyConnector
     {
+
+        public static IChannel clientChannel = null;
         static async Task RunClientAsync()
         {
 
@@ -35,7 +37,7 @@ namespace mine_game.src.connector.socket
 
 
                     }));
-                IChannel clientChannel = await bootstrap.ConnectAsync(new IPEndPoint(LoginService.userInfo.gameGatewayInfo.Host(), LoginService.userInfo.gameGatewayInfo.port));
+                clientChannel = await bootstrap.ConnectAsync(new IPEndPoint(LoginService.userInfo.gameGatewayInfo.Host(), LoginService.userInfo.gameGatewayInfo.port));
                 Debug.WriteLine("建立连接");
             }
             catch (Exception ex)
@@ -49,7 +51,14 @@ namespace mine_game.src.connector.socket
 
         }
 
-
         public static void Run() => RunClientAsync().Wait();
+
+
+        public void sendMessage()
+        {
+
+
+            clientChannel.WriteAndFlushAsync(new byte[0]);
+        }
     }
 }

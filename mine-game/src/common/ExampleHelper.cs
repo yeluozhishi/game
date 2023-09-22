@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using System;
 
 namespace mine_game.src.common
@@ -8,6 +9,7 @@ namespace mine_game.src.common
         static ExampleHelper()
         {
             var builder = new ConfigurationBuilder();
+            builder.Add(new JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true });
             Configuration = builder.Build();
         }
 

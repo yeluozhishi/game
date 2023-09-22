@@ -1,7 +1,9 @@
-﻿using mine_game.src.pages;
+﻿using mine_game.src.common;
+using mine_game.src.pages;
 using mine_game.src.service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,6 +34,7 @@ namespace mine_game
         {
             this.InitializeComponent();
             loginService = ServiceHelper.Instance().getInstance<LoginService>(typeof(LoginService));
+            textBox.Text = ClientSettings.Host.ToString();
         }
 
         private void nextPage(object sender, RoutedEventArgs e)
@@ -42,6 +45,11 @@ namespace mine_game
         private void login(object sender, RoutedEventArgs e)
         {
             loginService.login("1");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
