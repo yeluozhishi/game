@@ -21,7 +21,7 @@
             <TextBox Canvas.Left="426" TextWrapping="Wrap" Text="TextBox" Canvas.Top="141" Width="121" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         </Canvas>
-        <Button Content="front page" Height="51" Margin="1767,60,0,0" VerticalAlignment="Top" Width="102" Click="frontPage"/>
+        <Button Content="front page" Height="51" Margin="960,80,0,0" VerticalAlignment="Top" Width="102" Click="frontPage"/>
 
     </Grid>
 </Page>

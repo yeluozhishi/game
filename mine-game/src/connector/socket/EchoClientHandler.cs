@@ -1,22 +1,44 @@
 ﻿using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
+using mine_game.src.entity.vo;
+using mine_game.src.entity;
 using System;
 using System.Diagnostics;
 using System.Text;
+using Windows.System;
+using mine_game.src.service;
+using Google.Protobuf;
 
 namespace mine_game.src.connector.socket
 {
     class EchoClientHandler : ChannelHandlerAdapter
     {
-        readonly private IByteBuffer initialMessage;
+        private IByteBuffer initialMessage;
         public EchoClientHandler()
         {
             this.initialMessage = Unpooled.Buffer(256);
             byte[] messageBytes = Encoding.UTF8.GetBytes("Hello world");
-            this.initialMessage.WriteBytes(messageBytes);
+            initialMessage.WriteInt(messageBytes.Length);
+            initialMessage.WriteBytes(messageBytes);
         }
 
-        public override void ChannelActive(IChannelHandlerContext context) => context.WriteAndFlushAsync(this.initialMessage);
+        public override void ChannelActive(IChannelHandlerContext context)
+        {
+            //context.WriteAndFlushAsync(this.initialMessage);
+            MessageSendHelper.Context = context;
+            Debug.WriteLine(context.Channel.RemoteAddress + " is channelActive");
+            //context.FireChannelActive();
+            common.proto.Message message = new common.proto.Message();
+            message.PlayerId = 1;
+            message.Command = 1;
+            message.Topic = "messageBody";
+            var body = message.ToByteArray();
+            var p = Unpooled.Buffer(256);
+            //p.WriteInt(body.Length);
+            p.WriteBytes(body);
+            context.Channel.WriteAndFlushAsync(p);
+            Debug.WriteLine(message.ToString());
+        }
 
         public override void ChannelRead(IChannelHandlerContext context, object message)
         {

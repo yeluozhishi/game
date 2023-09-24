@@ -9,10 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="register" Height="89" Margin="411,411,0,0" VerticalAlignment="Top" Width="181" Click="Button_Click"/>
-        <Button Content="login" Height="89" Margin="693,411,0,0" VerticalAlignment="Top" Width="181" Click="login"/>
-        <Button Content="next page" Height="89" Margin="986,411,0,0" VerticalAlignment="Top" Width="181" Click="nextPage"/>
+        <Button Content="register" Height="89" Margin="411,411,0,0" VerticalAlignment="Top" Width="181" Click="ChosePlayer"/>
+        <Button Content="login" Height="89" Margin="693,411,0,0" VerticalAlignment="Top" Width="181" Click="Login"/>
+        <Button Content="next page" Height="89" Margin="986,411,0,0" VerticalAlignment="Top" Width="181" Click="NextPage"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="411,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="88" Width="181"/>
+        <Button Content="register" Height="89" Margin="411,588,0,0" VerticalAlignment="Top" Width="181" Click="ChosePlayer"/>
 
     </Grid>
 </Page>

@@ -11,7 +11,7 @@
     <AssemblyName>mine-game</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -127,11 +127,15 @@
     <Compile Include="src\command\CommandInterface.cs" />
     <Compile Include="src\common\ClientSettings.cs" />
     <Compile Include="src\common\ExampleHelper.cs" />
+    <Compile Include="src\common\protobuf\csharp\Message.cs" />
     <Compile Include="src\connector\http\HttpHelper.cs" />
     <Compile Include="src\connector\socket\EchoClientHandler.cs" />
+    <Compile Include="src\connector\socket\MessageDecoder.cs" />
+    <Compile Include="src\connector\socket\MessageEncoder.cs" />
+    <Compile Include="src\connector\socket\MessageSendHelper.cs" />
     <Compile Include="src\connector\socket\NettyConnector.cs" />
     <Compile Include="src\constant\ServiceConstant.cs" />
-    <Compile Include="src\entity\vo\CommandMessage.cs" />
+    <Compile Include="src\entity\vo\Message.cs" />
     <Compile Include="src\entity\dto\UserDto.cs" />
     <Compile Include="src\entity\GameGatewayInfo.cs" />
     <Compile Include="src\entity\Gamer.cs" />
@@ -167,6 +171,7 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="src\assets\head\R-C.jpg" />
+    <Content Include="src\common\protobuf\protoc.exe" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -196,6 +201,12 @@
     <PackageReference Include="DotNetty.Transport">
       <Version>0.7.5</Version>
     </PackageReference>
+    <PackageReference Include="Google.Protobuf">
+      <Version>3.24.3</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Protobuf.Tools">
+      <Version>3.24.3</Version>
+    </PackageReference>
     <PackageReference Include="log4net">
       <Version>2.0.15</Version>
     </PackageReference>
@@ -216,10 +227,24 @@
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="src\common\protobuf\google\protobuf\any.proto" />
+    <None Include="src\common\protobuf\google\protobuf\api.proto" />
+    <None Include="src\common\protobuf\google\protobuf\compiler\plugin.proto" />
+    <None Include="src\common\protobuf\google\protobuf\descriptor.proto" />
+    <None Include="src\common\protobuf\google\protobuf\duration.proto" />
+    <None Include="src\common\protobuf\google\protobuf\empty.proto" />
+    <None Include="src\common\protobuf\google\protobuf\field_mask.proto" />
+    <None Include="src\common\protobuf\google\protobuf\source_context.proto" />
+    <None Include="src\common\protobuf\google\protobuf\struct.proto" />
+    <None Include="src\common\protobuf\google\protobuf\timestamp.proto" />
+    <None Include="src\common\protobuf\google\protobuf\type.proto" />
+    <None Include="src\common\protobuf\google\protobuf\wrappers.proto" />
+    <None Include="src\common\protobuf\proto\Message.proto" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\api\" />
     <Folder Include="src\assets\other\" />
+    <Folder Include="src\common\protobuf\java\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

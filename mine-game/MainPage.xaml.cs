@@ -37,19 +37,19 @@ namespace mine_game
             textBox.Text = ClientSettings.Host.ToString();
         }
 
-        private void nextPage(object sender, RoutedEventArgs e)
+        private void NextPage(object sender, RoutedEventArgs e)
         {
             Navigation.RootFrame.Navigate(typeof(PlayerPanel), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void login(object sender, RoutedEventArgs e)
+        private void Login(object sender, RoutedEventArgs e)
         {
-            loginService.login("1");
+            loginService.Login("1");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ChosePlayer(object sender, RoutedEventArgs e)
         {
-
+            loginService.ChosePlayer();
         }
     }
 }

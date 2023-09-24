@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace mine_game.src.entity.vo
 {
-    internal class CreatPlayerBody
+    [Serializable]
+    class CreatPlayerBody : MessageBody
     {
         private string msg;
         private string userName;

@@ -1,0 +1,1 @@
+protoc.exe --proto_path=proto --java_out=java Message.proto
