@@ -1,1 +1,1 @@
-protoc.exe --proto_path=proto --java_out=java Message.proto
+protoc.exe --proto_path=proto --java_out=java --csharp_out=csharp Message.proto LoginReq.proto Tips.proto LoginRes.proto Empty.proto

@@ -28,10 +28,11 @@ namespace mine_game.src.connector.socket
             MessageSendHelper.Context = context;
             Debug.WriteLine(context.Channel.RemoteAddress + " is channelActive");
             //context.FireChannelActive();
-            common.proto.Message message = new common.proto.Message();
+            Message message = new Message();
             message.PlayerId = 1;
             message.Command = 1;
-            message.Topic = "messageBody";
+            message.Tips = new Tips();
+            message.Tips.Msg = "hello";
             var body = message.ToByteArray();
             var p = Unpooled.Buffer(256);
             //p.WriteInt(body.Length);

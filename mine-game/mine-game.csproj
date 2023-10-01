@@ -127,7 +127,12 @@
     <Compile Include="src\command\CommandInterface.cs" />
     <Compile Include="src\common\ClientSettings.cs" />
     <Compile Include="src\common\ExampleHelper.cs" />
+    <Compile Include="src\common\MessageFactory.cs" />
+    <Compile Include="src\common\protobuf\csharp\Empty.cs" />
+    <Compile Include="src\common\protobuf\csharp\LoginReq.cs" />
+    <Compile Include="src\common\protobuf\csharp\LoginRes.cs" />
     <Compile Include="src\common\protobuf\csharp\Message.cs" />
+    <Compile Include="src\common\protobuf\csharp\Tips.cs" />
     <Compile Include="src\connector\http\HttpHelper.cs" />
     <Compile Include="src\connector\socket\EchoClientHandler.cs" />
     <Compile Include="src\connector\socket\MessageDecoder.cs" />

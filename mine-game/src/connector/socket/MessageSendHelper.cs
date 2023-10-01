@@ -1,15 +1,10 @@
-﻿using DotNetty.Buffers;
-using DotNetty.Transport.Channels;
+﻿using DotNetty.Transport.Channels;
 using mine_game.src.entity.vo;
 using mine_game.src.service;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using mine_game.src.common.proto;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using Google.Protobuf;
+using DotNetty.Buffers;
+using mine_game.src.common;
 
 namespace mine_game.src.connector.socket
 {
@@ -19,16 +14,15 @@ namespace mine_game.src.connector.socket
 
         public static IChannelHandlerContext Context {set => context = value; }
 
-        public static void SendMessage(int command, MessageBody messageBody)
+        public static void SendMessage(int command, object messageBody, Message.BodyOneofCase oneofCase)
         {
-            common.proto.Message message = new common.proto.Message();
-            message.PlayerId = (ulong)LoginService.userInfo.id;
-            message.Command = command;
-            message.Topic = "messageBody";
-            Debug.WriteLine(context.Channel.Active);
-            
-            context.Channel.WriteAndFlushAsync(message.ToByteArray());
+            Message message = MessageFactory.Instance().getMessage(command, oneofCase, messageBody);
+            var body = message.ToByteArray();
+            var p = Unpooled.Buffer(256);
+            p.WriteBytes(body);
+            context.Channel.WriteAndFlushAsync(p);
             Debug.WriteLine(message.ToString());
         }
+
     }
 }

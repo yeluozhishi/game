@@ -49,11 +49,9 @@ namespace mine_game.src.service
 
         public void ChosePlayer()
         {
-            CreatPlayerBody message = new CreatPlayerBody();
-            message.UserName = userInfo.userName;
-            message.ServerId = "1";
-            message.Msg = "i'm coming!";
-            MessageSendHelper.SendMessage(3, message);
+            var tips = new Tips();
+            tips.Msg = "hello";
+            MessageSendHelper.SendMessage(3, tips, Message.BodyOneofCase.Tips);
         }
     }
 }
