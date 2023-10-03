@@ -23,15 +23,16 @@ public static partial class MessageReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cg1NZXNzYWdlLnByb3RvGg5Mb2dpblJlcy5wcm90bxoOTG9naW5SZXEucHJv",
-          "dG8aC0VtcHR5LnByb3RvGgpUaXBzLnByb3RvIroBCgdNZXNzYWdlEg8KB2Nv",
-          "bW1hbmQYASABKAUSFgoOc2VydmVySW5zdGFuY2UYAiABKAkSEAoIcGxheWVy",
-          "SWQYAyABKAMSHQoIbG9naW5SZXMYCiABKAsyCS5Mb2dpblJlc0gAEh0KCGxv",
-          "Z2luUmVxGAsgASgLMgkuTG9naW5SZXFIABIXCgVlbXB0eRgMIAEoCzIGLkVt",
-          "cHR5SAASFQoEdGlwcxgNIAEoCzIFLlRpcHNIAEIGCgRib2R5YgZwcm90bzM="));
+          "dG8aC0VtcHR5LnByb3RvGgpUaXBzLnByb3RvGhBQbGF5ZXJJbmZvLnByb3Rv",
+          "IrUBCgdNZXNzYWdlEg8KB2NvbW1hbmQYASABKAUSHQoIbG9naW5SZXMYCiAB",
+          "KAsyCS5Mb2dpblJlc0gAEh0KCGxvZ2luUmVxGAsgASgLMgkuTG9naW5SZXFI",
+          "ABIXCgVlbXB0eRgMIAEoCzIGLkVtcHR5SAASFQoEdGlwcxgNIAEoCzIFLlRp",
+          "cHNIABIjCgtwbGF5ZXJJbmZvcxgOIAEoCzIMLlBsYXllckluZm9zSABCBgoE",
+          "Ym9keWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::LoginResReflection.Descriptor, global::LoginReqReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipsReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::LoginResReflection.Descriptor, global::LoginReqReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipsReflection.Descriptor, global::PlayerInfoReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Command", "ServerInstance", "PlayerId", "LoginRes", "LoginReq", "Empty", "Tips" }, new[]{ "Body" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Command", "LoginRes", "LoginReq", "Empty", "Tips", "PlayerInfos" }, new[]{ "Body" }, null, null, null)
         }));
   }
   #endregion
@@ -73,8 +74,6 @@ public sealed partial class Message : pb::IMessage<Message>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public Message(Message other) : this() {
     command_ = other.command_;
-    serverInstance_ = other.serverInstance_;
-    playerId_ = other.playerId_;
     switch (other.BodyCase) {
       case BodyOneofCase.LoginRes:
         LoginRes = other.LoginRes.Clone();
@@ -87,6 +86,9 @@ public sealed partial class Message : pb::IMessage<Message>
         break;
       case BodyOneofCase.Tips:
         Tips = other.Tips.Clone();
+        break;
+      case BodyOneofCase.PlayerInfos:
+        PlayerInfos = other.PlayerInfos.Clone();
         break;
     }
 
@@ -108,30 +110,6 @@ public sealed partial class Message : pb::IMessage<Message>
     get { return command_; }
     set {
       command_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "serverInstance" field.</summary>
-  public const int ServerInstanceFieldNumber = 2;
-  private string serverInstance_ = "";
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string ServerInstance {
-    get { return serverInstance_; }
-    set {
-      serverInstance_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "playerId" field.</summary>
-  public const int PlayerIdFieldNumber = 3;
-  private long playerId_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public long PlayerId {
-    get { return playerId_; }
-    set {
-      playerId_ = value;
     }
   }
 
@@ -183,6 +161,18 @@ public sealed partial class Message : pb::IMessage<Message>
     }
   }
 
+  /// <summary>Field number for the "playerInfos" field.</summary>
+  public const int PlayerInfosFieldNumber = 14;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::PlayerInfos PlayerInfos {
+    get { return bodyCase_ == BodyOneofCase.PlayerInfos ? (global::PlayerInfos) body_ : null; }
+    set {
+      body_ = value;
+      bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.PlayerInfos;
+    }
+  }
+
   private object body_;
   /// <summary>Enum of possible cases for the "body" oneof.</summary>
   public enum BodyOneofCase {
@@ -191,6 +181,7 @@ public sealed partial class Message : pb::IMessage<Message>
     LoginReq = 11,
     Empty = 12,
     Tips = 13,
+    PlayerInfos = 14,
   }
   private BodyOneofCase bodyCase_ = BodyOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -222,12 +213,11 @@ public sealed partial class Message : pb::IMessage<Message>
       return true;
     }
     if (Command != other.Command) return false;
-    if (ServerInstance != other.ServerInstance) return false;
-    if (PlayerId != other.PlayerId) return false;
     if (!object.Equals(LoginRes, other.LoginRes)) return false;
     if (!object.Equals(LoginReq, other.LoginReq)) return false;
     if (!object.Equals(Empty, other.Empty)) return false;
     if (!object.Equals(Tips, other.Tips)) return false;
+    if (!object.Equals(PlayerInfos, other.PlayerInfos)) return false;
     if (BodyCase != other.BodyCase) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -237,12 +227,11 @@ public sealed partial class Message : pb::IMessage<Message>
   public override int GetHashCode() {
     int hash = 1;
     if (Command != 0) hash ^= Command.GetHashCode();
-    if (ServerInstance.Length != 0) hash ^= ServerInstance.GetHashCode();
-    if (PlayerId != 0L) hash ^= PlayerId.GetHashCode();
     if (bodyCase_ == BodyOneofCase.LoginRes) hash ^= LoginRes.GetHashCode();
     if (bodyCase_ == BodyOneofCase.LoginReq) hash ^= LoginReq.GetHashCode();
     if (bodyCase_ == BodyOneofCase.Empty) hash ^= Empty.GetHashCode();
     if (bodyCase_ == BodyOneofCase.Tips) hash ^= Tips.GetHashCode();
+    if (bodyCase_ == BodyOneofCase.PlayerInfos) hash ^= PlayerInfos.GetHashCode();
     hash ^= (int) bodyCase_;
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -266,14 +255,6 @@ public sealed partial class Message : pb::IMessage<Message>
       output.WriteRawTag(8);
       output.WriteInt32(Command);
     }
-    if (ServerInstance.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteString(ServerInstance);
-    }
-    if (PlayerId != 0L) {
-      output.WriteRawTag(24);
-      output.WriteInt64(PlayerId);
-    }
     if (bodyCase_ == BodyOneofCase.LoginRes) {
       output.WriteRawTag(82);
       output.WriteMessage(LoginRes);
@@ -289,6 +270,10 @@ public sealed partial class Message : pb::IMessage<Message>
     if (bodyCase_ == BodyOneofCase.Tips) {
       output.WriteRawTag(106);
       output.WriteMessage(Tips);
+    }
+    if (bodyCase_ == BodyOneofCase.PlayerInfos) {
+      output.WriteRawTag(114);
+      output.WriteMessage(PlayerInfos);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -304,14 +289,6 @@ public sealed partial class Message : pb::IMessage<Message>
       output.WriteRawTag(8);
       output.WriteInt32(Command);
     }
-    if (ServerInstance.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteString(ServerInstance);
-    }
-    if (PlayerId != 0L) {
-      output.WriteRawTag(24);
-      output.WriteInt64(PlayerId);
-    }
     if (bodyCase_ == BodyOneofCase.LoginRes) {
       output.WriteRawTag(82);
       output.WriteMessage(LoginRes);
@@ -328,6 +305,10 @@ public sealed partial class Message : pb::IMessage<Message>
       output.WriteRawTag(106);
       output.WriteMessage(Tips);
     }
+    if (bodyCase_ == BodyOneofCase.PlayerInfos) {
+      output.WriteRawTag(114);
+      output.WriteMessage(PlayerInfos);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -341,12 +322,6 @@ public sealed partial class Message : pb::IMessage<Message>
     if (Command != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Command);
     }
-    if (ServerInstance.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(ServerInstance);
-    }
-    if (PlayerId != 0L) {
-      size += 1 + pb::CodedOutputStream.ComputeInt64Size(PlayerId);
-    }
     if (bodyCase_ == BodyOneofCase.LoginRes) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(LoginRes);
     }
@@ -358,6 +333,9 @@ public sealed partial class Message : pb::IMessage<Message>
     }
     if (bodyCase_ == BodyOneofCase.Tips) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Tips);
+    }
+    if (bodyCase_ == BodyOneofCase.PlayerInfos) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerInfos);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -373,12 +351,6 @@ public sealed partial class Message : pb::IMessage<Message>
     }
     if (other.Command != 0) {
       Command = other.Command;
-    }
-    if (other.ServerInstance.Length != 0) {
-      ServerInstance = other.ServerInstance;
-    }
-    if (other.PlayerId != 0L) {
-      PlayerId = other.PlayerId;
     }
     switch (other.BodyCase) {
       case BodyOneofCase.LoginRes:
@@ -405,6 +377,12 @@ public sealed partial class Message : pb::IMessage<Message>
         }
         Tips.MergeFrom(other.Tips);
         break;
+      case BodyOneofCase.PlayerInfos:
+        if (PlayerInfos == null) {
+          PlayerInfos = new global::PlayerInfos();
+        }
+        PlayerInfos.MergeFrom(other.PlayerInfos);
+        break;
     }
 
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -426,14 +404,6 @@ public sealed partial class Message : pb::IMessage<Message>
           Command = input.ReadInt32();
           break;
         }
-        case 18: {
-          ServerInstance = input.ReadString();
-          break;
-        }
-        case 24: {
-          PlayerId = input.ReadInt64();
-          break;
-        }
         case 82: {
           global::LoginRes subBuilder = new global::LoginRes();
           if (bodyCase_ == BodyOneofCase.LoginRes) {
@@ -468,6 +438,15 @@ public sealed partial class Message : pb::IMessage<Message>
           }
           input.ReadMessage(subBuilder);
           Tips = subBuilder;
+          break;
+        }
+        case 114: {
+          global::PlayerInfos subBuilder = new global::PlayerInfos();
+          if (bodyCase_ == BodyOneofCase.PlayerInfos) {
+            subBuilder.MergeFrom(PlayerInfos);
+          }
+          input.ReadMessage(subBuilder);
+          PlayerInfos = subBuilder;
           break;
         }
       }
@@ -489,14 +468,6 @@ public sealed partial class Message : pb::IMessage<Message>
           Command = input.ReadInt32();
           break;
         }
-        case 18: {
-          ServerInstance = input.ReadString();
-          break;
-        }
-        case 24: {
-          PlayerId = input.ReadInt64();
-          break;
-        }
         case 82: {
           global::LoginRes subBuilder = new global::LoginRes();
           if (bodyCase_ == BodyOneofCase.LoginRes) {
@@ -531,6 +502,15 @@ public sealed partial class Message : pb::IMessage<Message>
           }
           input.ReadMessage(subBuilder);
           Tips = subBuilder;
+          break;
+        }
+        case 114: {
+          global::PlayerInfos subBuilder = new global::PlayerInfos();
+          if (bodyCase_ == BodyOneofCase.PlayerInfos) {
+            subBuilder.MergeFrom(PlayerInfos);
+          }
+          input.ReadMessage(subBuilder);
+          PlayerInfos = subBuilder;
           break;
         }
       }

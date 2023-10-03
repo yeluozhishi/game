@@ -24,21 +24,8 @@ namespace mine_game.src.connector.socket
 
         public override void ChannelActive(IChannelHandlerContext context)
         {
-            //context.WriteAndFlushAsync(this.initialMessage);
             MessageSendHelper.Context = context;
-            Debug.WriteLine(context.Channel.RemoteAddress + " is channelActive");
-            //context.FireChannelActive();
-            Message message = new Message();
-            message.PlayerId = 1;
-            message.Command = 1;
-            message.Tips = new Tips();
-            message.Tips.Msg = "hello";
-            var body = message.ToByteArray();
-            var p = Unpooled.Buffer(256);
-            //p.WriteInt(body.Length);
-            p.WriteBytes(body);
-            context.Channel.WriteAndFlushAsync(p);
-            Debug.WriteLine(message.ToString());
+            context.FireChannelActive();
         }
 
         public override void ChannelRead(IChannelHandlerContext context, object message)
