@@ -128,10 +128,13 @@
     <Compile Include="src\common\ClientSettings.cs" />
     <Compile Include="src\common\ExampleHelper.cs" />
     <Compile Include="src\common\MessageFactory.cs" />
+    <Compile Include="src\common\protobuf\csharp\CreatePlayer.cs" />
     <Compile Include="src\common\protobuf\csharp\Empty.cs" />
     <Compile Include="src\common\protobuf\csharp\LoginReq.cs" />
     <Compile Include="src\common\protobuf\csharp\LoginRes.cs" />
     <Compile Include="src\common\protobuf\csharp\Message.cs" />
+    <Compile Include="src\common\protobuf\csharp\MessageWrapper.cs" />
+    <Compile Include="src\common\protobuf\csharp\PlayerInfo.cs" />
     <Compile Include="src\common\protobuf\csharp\Tips.cs" />
     <Compile Include="src\connector\http\HttpHelper.cs" />
     <Compile Include="src\connector\socket\EchoClientHandler.cs" />
@@ -176,7 +179,7 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="src\assets\head\R-C.jpg" />
-    <Content Include="src\common\protobuf\protoc.exe" />
+    <None Include="src\common\protobuf\protoc.exe" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -207,10 +210,10 @@
       <Version>0.7.5</Version>
     </PackageReference>
     <PackageReference Include="Google.Protobuf">
-      <Version>3.24.3</Version>
+      <Version>3.24.4</Version>
     </PackageReference>
     <PackageReference Include="Google.Protobuf.Tools">
-      <Version>3.24.3</Version>
+      <Version>3.24.4</Version>
     </PackageReference>
     <PackageReference Include="log4net">
       <Version>2.0.15</Version>
@@ -232,6 +235,7 @@
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="src\common\protobuf\genjava.bat" />
     <None Include="src\common\protobuf\google\protobuf\any.proto" />
     <None Include="src\common\protobuf\google\protobuf\api.proto" />
     <None Include="src\common\protobuf\google\protobuf\compiler\plugin.proto" />
@@ -244,7 +248,14 @@
     <None Include="src\common\protobuf\google\protobuf\timestamp.proto" />
     <None Include="src\common\protobuf\google\protobuf\type.proto" />
     <None Include="src\common\protobuf\google\protobuf\wrappers.proto" />
+    <None Include="src\common\protobuf\proto\CreatePlayer.proto" />
+    <None Include="src\common\protobuf\proto\Empty.proto" />
+    <None Include="src\common\protobuf\proto\LoginReq.proto" />
+    <None Include="src\common\protobuf\proto\LoginRes.proto" />
     <None Include="src\common\protobuf\proto\Message.proto" />
+    <None Include="src\common\protobuf\proto\MessageWrapper.proto" />
+    <None Include="src\common\protobuf\proto\PlayerInfo.proto" />
+    <None Include="src\common\protobuf\proto\Tips.proto" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\api\" />

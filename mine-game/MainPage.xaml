@@ -14,6 +14,8 @@
         <Button Content="next page" Height="89" Margin="986,411,0,0" VerticalAlignment="Top" Width="181" Click="NextPage"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="411,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="88" Width="181"/>
         <Button Content="test" Height="89" Margin="411,588,0,0" VerticalAlignment="Top" Width="181" Click="ChosePlayer"/>
+        <Button Content="get players" Height="89" Margin="693,588,0,0" VerticalAlignment="Top" Width="181" Click="GetPlayer"/>
+        <Button Content="create player" Height="89" Margin="986,582,0,0" VerticalAlignment="Top" Width="181" Click="CreatePlayer"/>
 
     </Grid>
 </Page>

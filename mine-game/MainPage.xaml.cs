@@ -51,5 +51,15 @@ namespace mine_game
         {
             loginService.ChosePlayer();
         }
+
+        private void GetPlayer(object sender, RoutedEventArgs e)
+        {
+            loginService.GetPlayers();
+        }
+
+        private void CreatePlayer(object sender, RoutedEventArgs e)
+        {
+            loginService.CreatPlayer();
+        }
     }
 }

@@ -24,15 +24,16 @@ public static partial class MessageReflection {
         string.Concat(
           "Cg1NZXNzYWdlLnByb3RvGg5Mb2dpblJlcy5wcm90bxoOTG9naW5SZXEucHJv",
           "dG8aC0VtcHR5LnByb3RvGgpUaXBzLnByb3RvGhBQbGF5ZXJJbmZvLnByb3Rv",
-          "IrUBCgdNZXNzYWdlEg8KB2NvbW1hbmQYASABKAUSHQoIbG9naW5SZXMYCiAB",
-          "KAsyCS5Mb2dpblJlc0gAEh0KCGxvZ2luUmVxGAsgASgLMgkuTG9naW5SZXFI",
-          "ABIXCgVlbXB0eRgMIAEoCzIGLkVtcHR5SAASFQoEdGlwcxgNIAEoCzIFLlRp",
-          "cHNIABIjCgtwbGF5ZXJJbmZvcxgOIAEoCzIMLlBsYXllckluZm9zSABCBgoE",
-          "Ym9keWIGcHJvdG8z"));
+          "GhJDcmVhdGVQbGF5ZXIucHJvdG8i3AEKB01lc3NhZ2USDwoHY29tbWFuZBgB",
+          "IAEoBRIdCghsb2dpblJlcxgKIAEoCzIJLkxvZ2luUmVzSAASHQoIbG9naW5S",
+          "ZXEYCyABKAsyCS5Mb2dpblJlcUgAEhcKBWVtcHR5GAwgASgLMgYuRW1wdHlI",
+          "ABIVCgR0aXBzGA0gASgLMgUuVGlwc0gAEiMKC3BsYXllckluZm9zGA4gASgL",
+          "MgwuUGxheWVySW5mb3NIABIlCgxjcmVhdGVQbGF5ZXIYDyABKAsyDS5DcmVh",
+          "dGVQbGF5ZXJIAEIGCgRib2R5YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::LoginResReflection.Descriptor, global::LoginReqReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipsReflection.Descriptor, global::PlayerInfoReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::LoginResReflection.Descriptor, global::LoginReqReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipsReflection.Descriptor, global::PlayerInfoReflection.Descriptor, global::CreatePlayerReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Command", "LoginRes", "LoginReq", "Empty", "Tips", "PlayerInfos" }, new[]{ "Body" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Command", "LoginRes", "LoginReq", "Empty", "Tips", "PlayerInfos", "CreatePlayer" }, new[]{ "Body" }, null, null, null)
         }));
   }
   #endregion
@@ -89,6 +90,9 @@ public sealed partial class Message : pb::IMessage<Message>
         break;
       case BodyOneofCase.PlayerInfos:
         PlayerInfos = other.PlayerInfos.Clone();
+        break;
+      case BodyOneofCase.CreatePlayer:
+        CreatePlayer = other.CreatePlayer.Clone();
         break;
     }
 
@@ -173,6 +177,18 @@ public sealed partial class Message : pb::IMessage<Message>
     }
   }
 
+  /// <summary>Field number for the "createPlayer" field.</summary>
+  public const int CreatePlayerFieldNumber = 15;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CreatePlayer CreatePlayer {
+    get { return bodyCase_ == BodyOneofCase.CreatePlayer ? (global::CreatePlayer) body_ : null; }
+    set {
+      body_ = value;
+      bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.CreatePlayer;
+    }
+  }
+
   private object body_;
   /// <summary>Enum of possible cases for the "body" oneof.</summary>
   public enum BodyOneofCase {
@@ -182,6 +198,7 @@ public sealed partial class Message : pb::IMessage<Message>
     Empty = 12,
     Tips = 13,
     PlayerInfos = 14,
+    CreatePlayer = 15,
   }
   private BodyOneofCase bodyCase_ = BodyOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -218,6 +235,7 @@ public sealed partial class Message : pb::IMessage<Message>
     if (!object.Equals(Empty, other.Empty)) return false;
     if (!object.Equals(Tips, other.Tips)) return false;
     if (!object.Equals(PlayerInfos, other.PlayerInfos)) return false;
+    if (!object.Equals(CreatePlayer, other.CreatePlayer)) return false;
     if (BodyCase != other.BodyCase) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -232,6 +250,7 @@ public sealed partial class Message : pb::IMessage<Message>
     if (bodyCase_ == BodyOneofCase.Empty) hash ^= Empty.GetHashCode();
     if (bodyCase_ == BodyOneofCase.Tips) hash ^= Tips.GetHashCode();
     if (bodyCase_ == BodyOneofCase.PlayerInfos) hash ^= PlayerInfos.GetHashCode();
+    if (bodyCase_ == BodyOneofCase.CreatePlayer) hash ^= CreatePlayer.GetHashCode();
     hash ^= (int) bodyCase_;
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -275,6 +294,10 @@ public sealed partial class Message : pb::IMessage<Message>
       output.WriteRawTag(114);
       output.WriteMessage(PlayerInfos);
     }
+    if (bodyCase_ == BodyOneofCase.CreatePlayer) {
+      output.WriteRawTag(122);
+      output.WriteMessage(CreatePlayer);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -309,6 +332,10 @@ public sealed partial class Message : pb::IMessage<Message>
       output.WriteRawTag(114);
       output.WriteMessage(PlayerInfos);
     }
+    if (bodyCase_ == BodyOneofCase.CreatePlayer) {
+      output.WriteRawTag(122);
+      output.WriteMessage(CreatePlayer);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -336,6 +363,9 @@ public sealed partial class Message : pb::IMessage<Message>
     }
     if (bodyCase_ == BodyOneofCase.PlayerInfos) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerInfos);
+    }
+    if (bodyCase_ == BodyOneofCase.CreatePlayer) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreatePlayer);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -382,6 +412,12 @@ public sealed partial class Message : pb::IMessage<Message>
           PlayerInfos = new global::PlayerInfos();
         }
         PlayerInfos.MergeFrom(other.PlayerInfos);
+        break;
+      case BodyOneofCase.CreatePlayer:
+        if (CreatePlayer == null) {
+          CreatePlayer = new global::CreatePlayer();
+        }
+        CreatePlayer.MergeFrom(other.CreatePlayer);
         break;
     }
 
@@ -449,6 +485,15 @@ public sealed partial class Message : pb::IMessage<Message>
           PlayerInfos = subBuilder;
           break;
         }
+        case 122: {
+          global::CreatePlayer subBuilder = new global::CreatePlayer();
+          if (bodyCase_ == BodyOneofCase.CreatePlayer) {
+            subBuilder.MergeFrom(CreatePlayer);
+          }
+          input.ReadMessage(subBuilder);
+          CreatePlayer = subBuilder;
+          break;
+        }
       }
     }
   #endif
@@ -511,6 +556,15 @@ public sealed partial class Message : pb::IMessage<Message>
           }
           input.ReadMessage(subBuilder);
           PlayerInfos = subBuilder;
+          break;
+        }
+        case 122: {
+          global::CreatePlayer subBuilder = new global::CreatePlayer();
+          if (bodyCase_ == BodyOneofCase.CreatePlayer) {
+            subBuilder.MergeFrom(CreatePlayer);
+          }
+          input.ReadMessage(subBuilder);
+          CreatePlayer = subBuilder;
           break;
         }
       }

@@ -43,7 +43,18 @@ namespace mine_game.src.service
 
         public void GetPlayers()
         {
-            var user = new UserDto();
+            MessageSendHelper.SendMessage(4, new Empty(), Message.BodyOneofCase.Empty);
+
+        }
+
+        public void CreatPlayer()
+        {
+            var create = new CreatePlayer();
+            create.ServerId = 1;
+            create.Sex = 1;
+            create.Kind = 1;
+            create.UserId = userInfo.id;
+            MessageSendHelper.SendMessage(1, create, Message.BodyOneofCase.CreatePlayer);
 
         }
 

@@ -29,10 +29,11 @@ namespace mine_game.src.common
                 case Message.BodyOneofCase.LoginRes: message.LoginRes = (global::LoginRes) ob; break;
                 case Message.BodyOneofCase.LoginReq: 
                     message.LoginReq = (LoginReq)ob;
-                    message.PlayerId = LoginService.userInfo.id;
+                    message.LoginReq.UserId = LoginService.userInfo.id;
                     break;
                 case Message.BodyOneofCase.Empty: message.Empty = (Empty)ob; break;
                 case Message.BodyOneofCase.Tips: message.Tips = (Tips)ob; break;
+                case Message.BodyOneofCase.CreatePlayer: message.CreatePlayer = (CreatePlayer)ob; break;
                 default: break;
 
             }
